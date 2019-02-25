@@ -1,0 +1,43 @@
+
+{
+    "philosophy": {
+        "genre": {
+            "positions": [
+                "direct realism",
+                "nihilism",
+                "atheism"
+            ],
+            "philosophers": [
+                "David Chalmers",
+                "Akeel Bilgrami",
+                "Karl Marx"
+            ]
+        },
+        "background": [
+            "assets/images/philosophy.png",
+            "assets/images/philosophy.jpg",
+            "assets/images/Thinker.jpg"
+        ],
+        "themeMusic": ""
+    },
+    "movies": {
+        "genre": {
+            "action": [
+                "This Or That"
+            ],
+            "comedy": [],
+            "horror": []
+        },
+        "background": [
+            "assets/images/movie1.png",
+            "assets/images/movie2.jpg"
+        ],
+        "themeMusic": ""
+    },
+    "music": {
+        "genre": {
+            "metal": [],
+            "rap": []
+        }
+    }
+}
