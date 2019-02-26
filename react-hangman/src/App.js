@@ -11,6 +11,14 @@ class App extends Component {
 
   }
 
+  componentDidMount() {
+    document.addEventListener('keyup', this.handleKeyPress);
+  }
+
+  handleKeyPress = (e) => {
+    console.log(e);
+  } 
+
   chooseTheme = (e) => {
     e.preventDefault();
     console.log(e.target.value);
@@ -22,7 +30,28 @@ class App extends Component {
     console.log(e.target.value);
     this.setState({selectedGenre: e.target.value})
   }
+
   render() {
+
+    let buttons;
+
+    if (this.state.selectedTheme) {
+      buttons = Object.keys(this.state.themes[this.state.selectedTheme].genre).map(key =>
+        <Button 
+        theme={key}
+        onClick={this.chooseGenre}
+      />
+      )
+    } else if (this.state.themes) {
+      buttons = Object.keys(this.state.themes).map( key => 
+      
+        <Button 
+          theme={key}
+          onClick={this.chooseTheme}
+        />  
+        
+      )
+    } 
 
     return (
       <div>
@@ -36,23 +65,7 @@ class App extends Component {
 
           <div id="buttons" className="d-flex justify-content-around">
 
-              {this.state.selectedTheme 
-              ? Object.keys(this.state.themes[this.state.selectedTheme].genre).map(key =>
-                <Button 
-                theme={key}
-                onClick={this.chooseGenre}
-              /> 
-                ) : 
-              Object.keys(this.state.themes).map( key => 
-      
-                <Button 
-                  theme={key}
-                  onClick={this.chooseTheme}
-                />  
-                
-              )
-
-              }
+              {buttons}
           </div>
           <div id="guess-text" className="row d-flex align-items-center">
             <div className='col-6 text-left'>
