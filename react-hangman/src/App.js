@@ -7,7 +7,9 @@ class App extends Component {
   state = {
     themes,
     selectedTheme: '',
-    selectedGenre: '',
+    genreArray: [],
+    word: ''
+    guessArray: []
 
   }
 
@@ -27,22 +29,29 @@ class App extends Component {
 
   chooseGenre = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
-    this.setState({selectedGenre: e.target.value})
+    this.setState({genreArray: this.state.themes[this.state.selectedTheme].genre[e.target.value]})
+    console.log(this.state.themes[this.state.selectedTheme].genre[e.target.value]);
   }
 
   render() {
 
     let buttons;
 
-    if (this.state.selectedTheme) {
+    if (this.state.genreArray.length) {
+
+      let word = this.state.word
+      word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)]
+      let = guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
+      
+    } else if (this.state.selectedTheme) {
+
       buttons = Object.keys(this.state.themes[this.state.selectedTheme].genre).map(key =>
         <Button 
         theme={key}
         onClick={this.chooseGenre}
       />
       )
-    } else if (this.state.themes) {
+    } else {
       buttons = Object.keys(this.state.themes).map( key => 
       
         <Button 
