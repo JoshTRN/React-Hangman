@@ -8,8 +8,9 @@ class App extends Component {
     themes,
     selectedTheme: '',
     genreArray: [],
-    word: ''
-    guessArray: []
+    word: '',
+    guessArray: [],
+    answerArray: []
 
   }
 
@@ -39,9 +40,12 @@ class App extends Component {
 
     if (this.state.genreArray.length) {
 
-      let word = this.state.word
+      let word = this.state.word;
       word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)]
-      let = guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
+      let answerArray = this.state.answerArray
+      answerArray = word.toLowerCase().split(' ');
+      this.state.guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
+      console.log(this.state.guessArray)
       
     } else if (this.state.selectedTheme) {
 
