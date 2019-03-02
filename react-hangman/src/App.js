@@ -24,8 +24,10 @@ class App extends Component {
 
   chooseTheme = (e) => {
     e.preventDefault();
-    console.log(e.target.value);
     this.setState({ selectedTheme: e.target.value })
+    var type = e.target.value.charAt(0).toUpperCase() + e.target.value.substr(1);
+    console.log(document.querySelector('#header').innerHTML = type + ' Hangman!');
+    
   }
 
   chooseGenre = (e) => {
@@ -34,6 +36,8 @@ class App extends Component {
     console.log(this.state.themes[this.state.selectedTheme].genre[e.target.value]);
   }
 
+
+
   render() {
 
     let buttons;
@@ -41,15 +45,14 @@ class App extends Component {
     if (!this.state.word) {
 
       if (this.state.genreArray.length) {
-        let word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)]
+
+        let word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)];
+
         this.setState({
           word,
           selectedTheme: '',
         });
-        console.log(word);
-        // answerArray = word.toLowerCase().split(' ');
-        // this.state.guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
-        // console.log(this.state.guessArray)
+
 
       } else if (this.state.selectedTheme) {
 
