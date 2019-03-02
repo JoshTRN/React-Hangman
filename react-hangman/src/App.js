@@ -20,17 +20,17 @@ class App extends Component {
 
   handleKeyPress = (e) => {
     console.log(e);
-  } 
+  }
 
   chooseTheme = (e) => {
     e.preventDefault();
     console.log(e.target.value);
-    this.setState({selectedTheme: e.target.value})
+    this.setState({ selectedTheme: e.target.value })
   }
 
   chooseGenre = (e) => {
     e.preventDefault();
-    this.setState({genreArray: this.state.themes[this.state.selectedTheme].genre[e.target.value]})
+    this.setState({ genreArray: this.state.themes[this.state.selectedTheme].genre[e.target.value] })
     console.log(this.state.themes[this.state.selectedTheme].genre[e.target.value]);
   }
 
@@ -38,33 +38,38 @@ class App extends Component {
 
     let buttons;
 
-    if (this.state.genreArray.length) {
+    if (!this.state.word) {
 
-      let word = this.state.word;
-      word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)]
-      let answerArray = this.state.answerArray
-      answerArray = word.toLowerCase().split(' ');
-      this.state.guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
-      console.log(this.state.guessArray)
-      
-    } else if (this.state.selectedTheme) {
+      if (this.state.genreArray.length) {
+        let word = this.state.genreArray[Math.floor(Math.random() * this.state.genreArray.length)]
+        this.setState({
+          word,
+          selectedTheme: '',
+        });
+        console.log(word);
+        // answerArray = word.toLowerCase().split(' ');
+        // this.state.guessArray = answerArray.map(elem => new Array(elem.length).fill().map(i => i = '_'));
+        // console.log(this.state.guessArray)
 
-      buttons = Object.keys(this.state.themes[this.state.selectedTheme].genre).map(key =>
-        <Button 
-        theme={key}
-        onClick={this.chooseGenre}
-      />
-      )
-    } else {
-      buttons = Object.keys(this.state.themes).map( key => 
-      
-        <Button 
-          theme={key}
-          onClick={this.chooseTheme}
-        />  
-        
-      )
-    } 
+      } else if (this.state.selectedTheme) {
+
+        buttons = Object.keys(this.state.themes[this.state.selectedTheme].genre).map(key =>
+          <Button
+            theme={key}
+            onClick={this.chooseGenre}
+          />
+        )
+      } else {
+
+        buttons = Object.keys(this.state.themes).map(key =>
+          <Button
+            theme={key}
+            onClick={this.chooseTheme}
+          />
+
+        )
+      }
+    }
 
     return (
       <div>
@@ -78,7 +83,7 @@ class App extends Component {
 
           <div id="buttons" className="d-flex justify-content-around">
 
-              {buttons}
+            {buttons}
           </div>
           <div id="guess-text" className="row d-flex align-items-center">
             <div className='col-6 text-left'>
